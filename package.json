@@ -13,7 +13,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsc && cp src/extension/*.html dist/extension/ && cp src/extension/manifest.json dist/extension/",
+    "build": "tsc && npx esbuild dist/extension/panel.js --bundle --outfile=dist/extension/panel.js --allow-overwrite && npx esbuild dist/extension/devtools.js --bundle --outfile=dist/extension/devtools.js --allow-overwrite && npx esbuild dist/extension/background.js --bundle --outfile=dist/extension/background.js --allow-overwrite && npx esbuild dist/extension/content-script.js --bundle --outfile=dist/extension/content-script.js --allow-overwrite && cp src/extension/*.html dist/extension/ && cp src/extension/manifest.json dist/extension/",
     "dev": "tsc -w",
     "test": "vitest run"
   },
@@ -31,8 +31,10 @@
     "@lit-labs/signals": "^0.2.0",
     "@types/chrome": "^0.1.38",
     "@vitest/browser": "^4.1.1",
+    "esbuild": "^0.27.4",
     "jsdom": "^29.0.1",
     "lit": "^3.0.0",
+    "puppeteer": "^24.40.0",
     "typescript": "^5.0.0",
     "vite": "^8.0.2",
     "vitest": "^4.1.1"
