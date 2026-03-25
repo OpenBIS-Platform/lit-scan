@@ -1,0 +1,31 @@
+{
+  "name": "lit-scan",
+  "version": "0.1.0",
+  "description": "A development-only runtime tool for Lit to detect component updates, count and rank hot components, and show why a component updated.",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc -w",
+    "test": "vitest run"
+  },
+  "keywords": [
+    "lit",
+    "developer-tools",
+    "web-components"
+  ],
+  "author": "",
+  "license": "MIT",
+  "peerDependencies": {
+    "lit": "^3.0.0"
+  },
+  "devDependencies": {
+    "@vitest/browser": "^4.1.1",
+    "jsdom": "^29.0.1",
+    "lit": "^3.0.0",
+    "typescript": "^5.0.0",
+    "vite": "^8.0.2",
+    "vitest": "^4.1.1"
+  }
+}

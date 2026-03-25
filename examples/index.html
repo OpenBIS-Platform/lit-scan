@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>lit-scan demo</title>
+  </head>
+  <body style="background: #111; color: #fff; font-family: sans-serif; padding: 40px;">
+    <h1>lit-scan Demo App</h1>
+    <p style="color: #aaa; margin-bottom: 30px;">
+        This playground demonstrates lit-scan detecting various update patterns across different components.
+    </p>
+
+    <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+        <interval-tester></interval-tester>
+        <prop-churner></prop-churner>
+        <manual-updater></manual-updater>
+    </div>
+
+    <script type="module" src="./app.ts"></script>
+  </body>
+</html>
