@@ -47,6 +47,7 @@ export interface LitScanStoreData {
     tag: string;
     timestamp: number;
     duration: number;
+    causedBy?: WeakRef<ReactiveElement> | null;
   }>;
   
   /**

@@ -1,0 +1,1 @@
+{"version":3,"file":"devtools.js","sourceRoot":"","sources":["../../src/extension/devtools.ts"],"names":[],"mappings":";AAAA,gCAAgC;AAEhC,MAAM,CAAC,QAAQ,CAAC,MAAM,CAAC,MAAM,CACzB,UAAU,EACV,EAAE,EAAE,kBAAkB;AACtB,YAAY,EACZ,CAAC,KAAK,EAAE,EAAE;IACN,OAAO,CAAC,GAAG,CAAC,wBAAwB,EAAE,KAAK,CAAC,CAAC;AACjD,CAAC,CACJ,CAAC"}

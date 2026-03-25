@@ -1,0 +1,12 @@
+node_modules/
+src/
+examples/
+test/
+vitest.config.ts
+tsconfig.json
+walkthrough.md
+lit-scan-prompt.md
+lit-scan-implementation-plan.md
+lit-scan-v2-implementation-plan.md
+lit-scan-v2-walkthrough.md
+lit-signals-analysis.md

@@ -2,7 +2,7 @@ import { LitScanStoreData, InstanceUpdateData } from './types.js';
 import type { ReactiveElement } from 'lit';
 
 class Store {
-  private data: LitScanStoreData = {
+  public data: LitScanStoreData = {
     instances: new WeakMap(),
     recentUpdates: [],
     hotComponents: new Map(),
@@ -39,7 +39,8 @@ class Store {
   recordUpdate(
     instance: ReactiveElement,
     duration: number,
-    changedProps: Map<PropertyKey, { oldValue: unknown; newValue: unknown }>
+    changedProps: Map<PropertyKey, { oldValue: unknown; newValue: unknown }>,
+    causedBy?: ReactiveElement | null
   ) {
     const data = this.getInstanceData(instance);
     const now = performance.now();
@@ -64,6 +65,7 @@ class Store {
       tag,
       timestamp: now,
       duration,
+      causedBy: causedBy ? new WeakRef(causedBy) : null,
     });
     
     // Keep recent updates history bounded

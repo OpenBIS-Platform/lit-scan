@@ -1,0 +1,24 @@
+{
+  "manifest_version": 3,
+  "name": "lit-scan DevTools",
+  "version": "2.0.0",
+  "description": "DevTools extension to profile and inspect Lit applications.",
+  "devtools_page": "devtools.html",
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content-script.js"],
+      "run_at": "document_start"
+    }
+  ],
+  "permissions": [
+    "scripting"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ]
+}

@@ -5,8 +5,15 @@
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "exports": {
+    ".": "./dist/index.js",
+    "./store.js": "./dist/store.js"
+  },
+  "files": [
+    "dist"
+  ],
   "scripts": {
-    "build": "tsc",
+    "build": "tsc && cp src/extension/*.html dist/extension/ && cp src/extension/manifest.json dist/extension/",
     "dev": "tsc -w",
     "test": "vitest run"
   },
@@ -21,6 +28,8 @@
     "lit": "^3.0.0"
   },
   "devDependencies": {
+    "@lit-labs/signals": "^0.2.0",
+    "@types/chrome": "^0.1.38",
     "@vitest/browser": "^4.1.1",
     "jsdom": "^29.0.1",
     "lit": "^3.0.0",
