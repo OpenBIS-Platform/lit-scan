@@ -22,13 +22,14 @@ export function initBridge() {
     }, '*');
 }
 
-export function emitUpdateData(tag: string, count: number, duration: number, changedProps: Map<PropertyKey, any>, causedByTag?: string) {
+export function emitUpdateData(tag: string, id: number, count: number, duration: number, changedProps: Map<PropertyKey, any>, causedByTag?: string) {
     window.postMessage({
         source: 'lit-scan-runtime',
         payload: {
             type: 'COMPONENT_UPDATE',
             data: { 
                 tag, 
+                id,
                 count, 
                 duration, 
                 changedProps: serializeProps(changedProps),

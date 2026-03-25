@@ -2,6 +2,8 @@ import { LitScanStoreData, InstanceUpdateData } from './types.js';
 import type { ReactiveElement } from 'lit';
 declare class Store {
     data: LitScanStoreData;
+    nextInstanceId: number;
+    idMap: Map<number, WeakRef<ReactiveElement>>;
     /**
      * Get the underlying store data
      */

@@ -18,13 +18,14 @@ export function initBridge() {
         payload: { type: 'INIT_STORE' }
     }, '*');
 }
-export function emitUpdateData(tag, count, duration, changedProps, causedByTag) {
+export function emitUpdateData(tag, id, count, duration, changedProps, causedByTag) {
     window.postMessage({
         source: 'lit-scan-runtime',
         payload: {
             type: 'COMPONENT_UPDATE',
             data: {
                 tag,
+                id,
                 count,
                 duration,
                 changedProps: serializeProps(changedProps),

@@ -650,6 +650,15 @@
         }
       });
     }
+    highlightComponent(id) {
+      if (this.port) {
+        this.port.postMessage({
+          type: "HIGHLIGHT_INSTANCE",
+          id,
+          tabId: chrome.devtools?.inspectedWindow?.tabId
+        });
+      }
+    }
     render() {
       const visibleUpdates = this.updates.filter((u3) => u3.tag.toLowerCase().includes(this.filterText.toLowerCase()));
       return b2`
@@ -668,10 +677,10 @@
 
             <div>
                 ${visibleUpdates.map((u3) => b2`
-                    <div class="log">
+                    <div class="log" @click=${() => this.highlightComponent(u3.id)} style="cursor: pointer; position: relative; margin-left: ${u3.causedByTag ? "10px" : "0"}; border-left: ${u3.causedByTag ? "2px solid #ff9800" : "none"}; padding-left: ${u3.causedByTag ? "6px" : "0"};">
                         <div>
+                            ${u3.causedByTag ? b2`<div style="color: #ff9800; font-size: 10px; margin-bottom: 2px;">↳ caused by &lt;${u3.causedByTag}&gt;</div>` : ""}
                             <strong>&lt;${u3.tag}&gt;</strong> 
-                            ${u3.causedByTag ? b2`<span style="color: #ff9800; font-size: 10px; margin: 0 4px;">(caused by &lt;${u3.causedByTag}&gt;)</span>` : ""}
                             <span class="props">(${Object.keys(u3.changedProps).join(", ") || "forced update"})</span>
                         </div>
                         <span style="color: ${u3.duration > 8 ? "#ffcc00" : "#4cd964"}">

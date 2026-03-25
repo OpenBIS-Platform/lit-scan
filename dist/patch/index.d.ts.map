@@ -1,1 +1,1 @@
-{"version":3,"file":"index.d.ts","sourceRoot":"","sources":["../../src/patch/index.ts"],"names":[],"mappings":"AAIA,OAAO,KAAK,EAAE,cAAc,EAAE,MAAM,aAAa,CAAC;AAUlD,wBAAgB,cAAc,CAAC,QAAQ,CAAC,EAAE,cAAc,QAgEvD;AAED,wBAAgB,aAAa,SAO5B"}
+{"version":3,"file":"index.d.ts","sourceRoot":"","sources":["../../src/patch/index.ts"],"names":[],"mappings":"AAIA,OAAO,KAAK,EAAE,cAAc,EAAE,MAAM,aAAa,CAAC;AAUlD,wBAAgB,cAAc,CAAC,QAAQ,CAAC,EAAE,cAAc,QAiEvD;AAED,wBAAgB,aAAa,SAO5B"}

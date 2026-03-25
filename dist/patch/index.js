@@ -60,7 +60,8 @@ export function installPatches(_options) {
         // Trigger visual overlay update
         drawOverlay(this);
         // Broadcast to DevTools extension bridge
-        emitUpdateData(this.tagName.toLowerCase(), store.getInstanceData(this).count, duration, fullChangedProps, causedBy?.tagName.toLowerCase());
+        const instanceData = store.getInstanceData(this);
+        emitUpdateData(this.tagName.toLowerCase(), instanceData.id, instanceData.count, duration, fullChangedProps, causedBy?.tagName.toLowerCase());
     };
 }
 export function removePatches() {

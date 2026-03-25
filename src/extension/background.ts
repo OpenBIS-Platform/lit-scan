@@ -8,6 +8,10 @@ chrome.runtime.onConnect.addListener((port) => {
         const extensionListener = (message: any) => {
             if (message.action === 'init') {
                 connections.set(message.tabId, port);
+            } else if (message.type === 'HIGHLIGHT_INSTANCE') {
+                if (message.tabId) {
+                    chrome.tabs.sendMessage(message.tabId, message);
+                }
             }
         };
 

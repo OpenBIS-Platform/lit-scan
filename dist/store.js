@@ -5,6 +5,8 @@ class Store {
             recentUpdates: [],
             hotComponents: new Map(),
         };
+        this.nextInstanceId = 1;
+        this.idMap = new Map();
     }
     /**
      * Get the underlying store data
@@ -20,12 +22,14 @@ class Store {
         if (!data) {
             data = {
                 tag: instance.tagName.toLowerCase(),
+                id: this.nextInstanceId++,
                 count: 0,
                 durations: [],
                 latestChangedProperties: new Map(),
                 lastUpdated: 0,
             };
             this.data.instances.set(instance, data);
+            this.idMap.set(data.id, new WeakRef(instance));
         }
         return data;
     }

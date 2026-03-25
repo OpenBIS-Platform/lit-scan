@@ -4,6 +4,9 @@ import { store } from '../store.js';
 let overlayContainer: HTMLElement | null = null;
 const activeBoxes = new WeakMap<ReactiveElement, HTMLElement>();
 
+const pendingOverlays = new Set<ReactiveElement>();
+let isRafScheduled = false;
+
 export function initOverlay() {
   if (overlayContainer) return;
   overlayContainer = document.createElement('div');
@@ -29,9 +32,32 @@ export function teardownOverlay() {
 export function drawOverlay(instance: ReactiveElement) {
   if (!overlayContainer) return;
 
-  const data = store.getInstanceData(instance);
+  pendingOverlays.add(instance);
   
-  const rect = instance.getBoundingClientRect();
+  if (!isRafScheduled) {
+    isRafScheduled = true;
+    requestAnimationFrame(() => {
+      isRafScheduled = false;
+      const instances = Array.from(pendingOverlays);
+      pendingOverlays.clear();
+      
+      // Step 1: Batch all DOM Reads (getBoundingClientRect)
+      const measurements = instances.map(inst => ({
+        instance: inst,
+        rect: inst.getBoundingClientRect(),
+        data: store.getInstanceData(inst)
+      }));
+
+      // Step 2: Batch all DOM Writes (Styles, Appends)
+      for (const { instance, rect, data } of measurements) {
+        renderSingleOverlayBox(instance, rect, data);
+      }
+    });
+  }
+}
+
+function renderSingleOverlayBox(instance: ReactiveElement, rect: DOMRect, data: any) {
+  if (!overlayContainer) return;
   if (rect.width === 0 || rect.height === 0 || rect.bottom < 0 || rect.right < 0 || rect.top > window.innerHeight || rect.left > window.innerWidth) {
      return; // Not visible
   }

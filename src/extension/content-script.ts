@@ -16,3 +16,10 @@ window.addEventListener('message', (event) => {
         }
     }
 });
+
+// Relay commands from DevTools background to the host page
+chrome.runtime.onMessage.addListener((request) => {
+    if (request.type === 'HIGHLIGHT_INSTANCE') {
+        window.postMessage({ source: 'lit-scan-devtools', payload: request }, '*');
+    }
+});

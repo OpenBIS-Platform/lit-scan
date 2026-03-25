@@ -8,6 +8,9 @@ class Store {
     hotComponents: new Map(),
   };
 
+  public nextInstanceId = 1;
+  public idMap = new Map<number, WeakRef<ReactiveElement>>();
+
   /**
    * Get the underlying store data
    */
@@ -23,12 +26,14 @@ class Store {
     if (!data) {
       data = {
         tag: instance.tagName.toLowerCase(),
+        id: this.nextInstanceId++,
         count: 0,
         durations: [],
         latestChangedProperties: new Map(),
         lastUpdated: 0,
       };
       this.data.instances.set(instance, data);
+      this.idMap.set(data.id, new WeakRef(instance));
     }
     return data;
   }

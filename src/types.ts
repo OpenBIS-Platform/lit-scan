@@ -10,6 +10,10 @@ export interface LitScanOptions {
 
 export interface InstanceUpdateData {
   /**
+   * A unique identifier for the instance, assigned by LitScan.
+   */
+  id: number;
+  /**
    * The tag name of the component
    */
   tag: string;

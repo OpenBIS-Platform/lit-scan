@@ -7,6 +7,10 @@
       const extensionListener = (message) => {
         if (message.action === "init") {
           connections.set(message.tabId, port);
+        } else if (message.type === "HIGHLIGHT_INSTANCE") {
+          if (message.tabId) {
+            chrome.tabs.sendMessage(message.tabId, message);
+          }
         }
       };
       port.onMessage.addListener(extensionListener);

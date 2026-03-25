@@ -61,6 +61,16 @@ export class LitScanPanelApp extends LitElement {
         });
     }
 
+    highlightComponent(id: number) {
+        if (this.port) {
+            this.port.postMessage({ 
+                type: 'HIGHLIGHT_INSTANCE', 
+                id, 
+                tabId: chrome.devtools?.inspectedWindow?.tabId 
+            });
+        }
+    }
+
     render() {
         const visibleUpdates = this.updates.filter(u => u.tag.toLowerCase().includes(this.filterText.toLowerCase()));
 
@@ -80,10 +90,10 @@ export class LitScanPanelApp extends LitElement {
 
             <div>
                 ${visibleUpdates.map(u => html`
-                    <div class="log">
+                    <div class="log" @click=${() => this.highlightComponent(u.id)} style="cursor: pointer; position: relative; margin-left: ${u.causedByTag ? '10px' : '0'}; border-left: ${u.causedByTag ? '2px solid #ff9800' : 'none'}; padding-left: ${u.causedByTag ? '6px' : '0'};">
                         <div>
+                            ${u.causedByTag ? html`<div style="color: #ff9800; font-size: 10px; margin-bottom: 2px;">↳ caused by &lt;${u.causedByTag}&gt;</div>` : ''}
                             <strong>&lt;${u.tag}&gt;</strong> 
-                            ${u.causedByTag ? html`<span style="color: #ff9800; font-size: 10px; margin: 0 4px;">(caused by &lt;${u.causedByTag}&gt;)</span>` : ''}
                             <span class="props">(${Object.keys(u.changedProps).join(', ') || 'forced update'})</span>
                         </div>
                         <span style="color: ${u.duration > 8 ? '#ffcc00' : '#4cd964'}">

@@ -6,6 +6,7 @@ export declare class LitScanPanelApp extends LitElement {
     private port;
     connectedCallback(): void;
     setupConnection(): void;
+    highlightComponent(id: number): void;
     render(): import("lit-html").TemplateResult<1>;
 }
 //# sourceMappingURL=panel.d.ts.map
