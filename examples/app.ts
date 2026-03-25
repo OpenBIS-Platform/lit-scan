@@ -89,3 +89,34 @@ export class SignalWatcherDemo extends SignalWatcher(LitElement) {
         `;
     }
 }
+
+// Cascade demonstration components
+@customElement('cascade-child')
+export class CascadeChild extends LitElement {
+    static styles = css`
+        :host { display: block; padding: 10px; border: 1px dotted #888; border-radius: 4px; margin-top: 10px; }
+    `;
+    @property({ type: Number }) value = 0;
+    render() {
+        return html`<div>Child reads: ${this.value}</div>`;
+    }
+}
+
+@customElement('cascade-parent')
+export class CascadeParent extends LitElement {
+    static styles = css`
+        :host { display: block; padding: 20px; border: 1px solid #444; border-radius: 8px; width: 200px; }
+        h3 { margin-top: 0; color: #ff9800; }
+        button { background: #ff9800; border: none; padding: 8px; border-radius: 4px; cursor: pointer; color: #fff;}
+    `;
+    
+    @state() counter = 0;
+
+    render() {
+        return html`
+            <h3>Cascade Parent</h3>
+            <button @click=${() => this.counter++}>Increment & Cascade</button>
+            <cascade-child .value=${this.counter}></cascade-child>
+        `;
+    }
+}
