@@ -1,12 +1,26 @@
-node_modules/
+# Source and test directories
 src/
-examples/
 test/
-vitest.config.ts
-tsconfig.json
+examples/
+
+# Dependencies and environment
+node_modules/
+.env
+
+# Internal Documentation & Planning
+*.md
+!README.md
+!CHANGELOG.md
+!LICENSE.md
+lit-scan-*.md
 walkthrough.md
-lit-scan-prompt.md
-lit-scan-implementation-plan.md
-lit-scan-v2-implementation-plan.md
-lit-scan-v2-walkthrough.md
-lit-signals-analysis.md
+prompt.md
+
+# CI & Editor setup
+.github/
+.vscode/
+.idea/
+
+# Testing/Coverage
+coverage/
+.nyc_output/
