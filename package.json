@@ -1,7 +1,7 @@
 {
-  "name": "lit-scan",
+  "name": "@openbis-platform/lit-scan",
   "version": "0.1.0",
-  "description": "A development-only runtime tool for Lit to detect component updates, count and rank hot components, and show why a component updated.",
+  "description": "Runtime performance scanner for Lit Web Components, inspired by React Scan",
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -19,11 +19,18 @@
   },
   "keywords": [
     "lit",
-    "developer-tools",
-    "web-components"
+    "web-components",
+    "performance",
+    "devtools",
+    "debug"
   ],
-  "author": "",
+  "homepage": "https://github.com/OpenBIS-Platform/lit-scan",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/OpenBIS-Platform/lit-scan.git"
+  },
   "license": "MIT",
+  "sideEffects": false,
   "peerDependencies": {
     "lit": "^3.0.0"
   },
