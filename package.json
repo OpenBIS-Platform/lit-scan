@@ -15,7 +15,8 @@
   "scripts": {
     "build": "tsc && npx esbuild dist/extension/panel.js --bundle --outfile=dist/extension/panel.js --allow-overwrite && npx esbuild dist/extension/devtools.js --bundle --outfile=dist/extension/devtools.js --allow-overwrite && npx esbuild dist/extension/background.js --bundle --outfile=dist/extension/background.js --allow-overwrite && npx esbuild dist/extension/content-script.js --bundle --outfile=dist/extension/content-script.js --allow-overwrite && cp src/extension/*.html dist/extension/ && cp src/extension/manifest.json dist/extension/",
     "dev": "tsc -w",
-    "test": "vitest run"
+    "test": "vitest run",
+    "prepublishOnly": "npm run build"
   },
   "keywords": [
     "lit",
